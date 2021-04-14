@@ -13,9 +13,6 @@ import io.netty.example.analysis.NettyServerHendler;
 import io.netty.example.analysis.TestServerInitializer;
 import io.netty.handler.codec.string.StringDecoder;
 
-/**
- * @author chenyang.yue@ttpai.cn
- */
 public class MyNettyServer {
 	public static void main(String[] args) {
 		EventLoopGroup bossGroup = new NioEventLoopGroup(1);

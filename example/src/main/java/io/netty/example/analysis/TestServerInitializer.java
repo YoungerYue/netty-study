@@ -5,11 +5,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.ServerSocketChannel;
 
-/**
- * TODO
- *
- * @author chenyang.yue@ttpai.cn
- */
 public class TestServerInitializer extends ChannelInitializer<ServerSocketChannel> {
 	@Override
 	protected void initChannel(ServerSocketChannel ch) {

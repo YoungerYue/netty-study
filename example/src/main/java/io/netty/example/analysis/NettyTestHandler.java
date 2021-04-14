@@ -7,11 +7,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
 
-/**
- * TODO
- *
- * @author chenyang.yue@ttpai.cn
- */
 @ChannelHandler.Sharable
 public class NettyTestHandler extends ChannelInboundHandlerAdapter {
 

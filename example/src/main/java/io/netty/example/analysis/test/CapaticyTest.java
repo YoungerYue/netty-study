@@ -1,10 +1,5 @@
 package io.netty.example.analysis.test;
 
-/**
- * TODO
- *
- * @author chenyang.yue@ttpai.cn
- */
 public class CapaticyTest {
 
 	public static void main(String[] args) {

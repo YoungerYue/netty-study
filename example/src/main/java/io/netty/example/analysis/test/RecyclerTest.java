@@ -2,11 +2,6 @@ package io.netty.example.analysis.test;
 
 import io.netty.util.Recycler;
 
-/**
- * TODO
- *
- * @author chenyang.yue@ttpai.cn
- */
 public class RecyclerTest {
 
 	public static void main(String[] args) {

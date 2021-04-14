@@ -3,9 +3,6 @@ package io.netty.example.analysis;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-/**
- * @author chenyang.yue@ttpai.cn
- */
 public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {

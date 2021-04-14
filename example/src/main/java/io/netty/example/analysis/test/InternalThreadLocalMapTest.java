@@ -2,11 +2,6 @@ package io.netty.example.analysis.test;
 
 import io.netty.util.internal.InternalThreadLocalMap;
 
-/**
- * TODO
- *
- * @author chenyang.yue@ttpai.cn
- */
 public class InternalThreadLocalMapTest {
 
 	public static void main(String[] args) {
