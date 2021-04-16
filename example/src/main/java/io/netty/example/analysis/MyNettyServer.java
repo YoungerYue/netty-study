@@ -13,7 +13,7 @@ import io.netty.handler.codec.string.StringDecoder;
 
 public class MyNettyServer {
 	public static void main(String[] args) {
-		EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+		EventLoopGroup bossGroup = new NioEventLoopGroup(2);
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 
 		try {

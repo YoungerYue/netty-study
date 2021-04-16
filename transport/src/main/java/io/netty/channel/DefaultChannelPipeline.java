@@ -1339,6 +1339,10 @@ public class DefaultChannelPipeline implements ChannelPipeline {
                 ChannelHandlerContext ctx,
                 SocketAddress remoteAddress, SocketAddress localAddress,
                 ChannelPromise promise) {
+        	//调用了 unsafe 的 connect 方法. 而 unsafe 又是什么呢?
+			// 回顾一下 HeadContext 的构造器, 我们发现 unsafe 是 pipeline.channel().unsafe() 返回的, 而 Channel 的 unsafe 字段,
+			// 在这个例子中, 我们已经知道了, 其实是 AbstractNioByteChannel.NioByteUnsafe 内部类.
+			// 兜兜转转了一大圈, 我们找到了创建 Socket 连接的关键代码. 进行跟踪 NioByteUnsafe -> AbstractNioUnsafe.connect
             unsafe.connect(remoteAddress, localAddress, promise);
         }
 

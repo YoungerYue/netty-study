@@ -455,7 +455,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
         }
 
         //注册到事件循环
-		//注册方法其实就是判断是否当前线程就是IO线程，是的话就直接执行，不是就包装成一个任务提交给IO线程，
+		//注册方法其实就是判断是否当前线程是否IO线程，是的话就直接执行，不是就包装成一个任务提交给IO线程，
 		// 这样就避免多线程的问题，始终是单线程操作
         @Override
         public final void register(EventLoop eventLoop, final ChannelPromise promise) {

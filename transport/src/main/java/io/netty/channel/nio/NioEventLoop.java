@@ -503,6 +503,10 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                     } finally {
                         // Ensure we always run tasks.
                         final long ioTime = System.nanoTime() - ioStartTime;
+                        //设 IO 操作耗时为 ioTime, ioTime 占的时间比例为 ioRatio, 则:
+						// 	ioTime / ioRatio = taskTime / taskRatio
+						// 	taskRatio = 100 - ioRatio
+						// 	=> taskTime = ioTime * (100 - ioRatio) / ioRatio
                         ranTasks = runAllTasks(ioTime * (100 - ioRatio) / ioRatio);
                     }
                 } else {
@@ -701,6 +705,9 @@ public final class NioEventLoop extends SingleThreadEventLoop {
             int readyOps = k.readyOps();
             // We first need to call finishConnect() before try to trigger a read(...) or write(...) as otherwise
             // the NIO JDK channel implementation may throw a NotYetConnectedException.
+			//OP_CONNECT 事件的处理中, 只做了两件事情:
+			// 1.正如代码中的注释所言, 我们需要将 OP_CONNECT 从就绪事件集中清除, 不然会一直有 OP_CONNECT 事件.
+			// 2.调用 unsafe.finishConnect() 通知上层连接已建立
             if ((readyOps & SelectionKey.OP_CONNECT) != 0) {
                 // remove OP_CONNECT as otherwise Selector.select(..) will always return without blocking
                 // See https://github.com/netty/netty/issues/924
@@ -708,6 +715,8 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                 ops &= ~SelectionKey.OP_CONNECT;
                 k.interestOps(ops);
 
+                // unsafe.finishConnect() 调用最后会调用到 pipeline().fireChannelActive(), 产生一个 inbound 事件,
+				// 通知 pipeline 中的各个 handler TCP 通道已建立(即 ChannelInboundHandler.channelActive 方法会被调用)
                 unsafe.finishConnect();
             }
 
